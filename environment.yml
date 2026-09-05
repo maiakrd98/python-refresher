@@ -1,0 +1,7 @@
+name: swe4s
+channels:
+  - conda-forge
+dependencies:
+  - pycodestyle
+
+prefix: "/Users/maiakrd/miniforge3/envs/swe4s"
