@@ -2,6 +2,30 @@ import sys
 
 
 def get_column(file_name, query_column, query_value, result_column=1):
+    """ Opens a file and returns the values in the results column for which the
+    value of the query column matches the query value
+
+    Parameters
+    ----------
+    file_name : str
+        Name of file to be opened
+
+    query_column : int
+        Column to match to query_value
+
+    query_value
+        Desired value of query_column
+
+    results_column : int, optional (default = 1)
+        Column with values to be returned
+
+    Returns
+    -------
+    results : list of int
+        List of the values in results_column for which the value of
+        query_column matches query_value
+    """
+
     results = []
 
     try:
@@ -40,6 +64,7 @@ def get_column(file_name, query_column, query_value, result_column=1):
                       result_entry + "') to float")
                 sys.exit()
 
+            # round returns the nearest integer
             results.append(round(result_float))
 
     return results
