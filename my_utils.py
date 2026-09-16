@@ -20,7 +20,8 @@ def get_column(file_name, query_column, query_value, result_column=1):
         try:
             query_entry = entries[query_column]
         except IndexError:
-            print('query_column index is out of bounds')
+            print('query_column index (' + str(query_column) +
+                  ') is out of bounds')
             sys.exit(1)
 
         if query_entry == query_value:
@@ -28,7 +29,8 @@ def get_column(file_name, query_column, query_value, result_column=1):
             try:
                 result_entry = entries[result_column]
             except IndexError:
-                print('result_column index is out of bounds')
+                print('result_column index (' + str(result_column) +
+                      ') is out of bounds')
                 sys.exit(1)
 
             try:
