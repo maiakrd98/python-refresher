@@ -68,4 +68,6 @@ def get_column(file_name, query_column, query_value, result_column=1):
             # (nearest even integer if the number ends in .5)
             results.append(round(result_float))
 
+    file.close()
+
     return results
