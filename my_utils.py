@@ -64,7 +64,8 @@ def get_column(file_name, query_column, query_value, result_column=1):
                       result_entry + "') to float")
                 sys.exit()
 
-            # round returns the nearest integer
+            # round results to the nearest integer
+            # (nearest even integer if the number ends in .5)
             results.append(round(result_float))
 
     return results
