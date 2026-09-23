@@ -71,3 +71,33 @@ def get_column(file_name, query_column, query_value, result_column=1):
     file.close()
 
     return results
+
+
+def mean(array):
+    """ Returns the arithmetic mean of a non-empty array of integers.
+
+    Parameters
+        ----------
+        array : list of int
+            The array that you would like to find the mean of. Must be
+            non-empty.
+
+    Returns
+        -------
+        mean : float
+            The arithmetic mean of the values in array.
+    """
+
+    if len(array) == 0:
+        print("It looks like you input an empty array. The function mean() "
+              "only takes non-empty arrays.")
+        sys.exit(1)
+
+    if (not all(type(i) is int for i in array)):
+        print("At least one of the entries in the array you input is not an "
+              "integer. The function mean() only takes arrays of integers.")
+        sys.exit(1)
+
+    mean = sum(array)/len(array)
+
+    return mean
