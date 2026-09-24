@@ -78,6 +78,42 @@ class TestMyUtils(unittest.TestCase):
                           file_name, 0,
                           'Gondor', 2)
 
+    def test_mean_one_array(self):
+        array = [1, 5, -3, 19]
+        m = my_utils.mean(array)
+        self.assertAlmostEqual(m, 5.5)
+
+    def test_mean_random_arrays_within_bounds(self):
+        for i in range(10000):
+            a = random.randint(0, 10)
+            b = random.randint(0, 10)
+            c = random.randint(0, 10)
+            d = random.randint(0, 10)
+            array = [a, b, c, d]
+            m = my_utils.mean(array)
+            self.assertTrue(m <= 10)
+            self.assertTrue(m >= 0)
+
+    def test_mean_large_random_arrays_about_5(self):
+        array = []
+        for k in range(10000):
+            array.append(random.randint(0, 10))
+        m = my_utils.mean(array)
+        self.assertAlmostEqual(m, 5, delta=0.1)
+
+    def test_mean_not_incorrect(self):
+        array = [7, -1, -2, 9, 7]
+        m = my_utils.mean(array)
+        self.assertNotAlmostEqual(m, -4)
+
+    def test_mean_not_ints(self):
+        array = ["hi", 4, 5]
+        self.assertRaises(SystemExit, my_utils.mean, array)
+
+    def test_mean_empty_array(self):
+        array = []
+        self.assertRaises(SystemExit, my_utils.mean, array)
+
 
 if __name__ == '__main__':
     unittest.main()
