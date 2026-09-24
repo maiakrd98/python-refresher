@@ -70,17 +70,13 @@ pycodestyle print_fires.py my_utils.py test/unit/test_my_utils.py
 
 ## Testing instructions
 
-To run the functional tests, which check that `print_fires.py` is working properly, navigate to the functional test directory (`test/func`):
+To run the functional tests, which check that `print_fires.py` is working properly, run the following command
 ```
-cd test/func
-```
-and run the following command
-```
-bash test_print_fires.sh
+bash test/func/test_print_fires.sh
 ```
 You should see that 28 tests have run with hopefully 28 successes.
 
-To run the unit tests from the main directory of the repository, run the following command
+To run the unit tests, run the following command
 ```
 python -m unittest discover -s test/unit
 ```
