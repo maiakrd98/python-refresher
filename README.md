@@ -1,5 +1,5 @@
 # Python Refresher
-This repository contains code for reading a file containing data on greenhouse gas emissions from various sources and various countries and printing the emissions from a particular country and a particular source.
+This repository contains code for reading a file containing data on greenhouse gas emissions from various sources and various countries and printing the emissions from a particular country and a particular source. It also contains code for calculating the mean, median, and standard deviation of a list of integers and to apply those operations to the emissions data.
 
 ## Installation and set up
 First, open your Terminal and navigate to the directory that you want this repository to be located in. Then clone the repository by running
