@@ -1,5 +1,6 @@
 import my_utils
 import argparse
+import sys
 
 
 def main():
@@ -27,11 +28,32 @@ def main():
                         help='Name of the file',
                         required=True)
 
+    parser.add_argument('--operation',
+                        type=str,
+                        help='Operation to perform on the returned values',
+                        required=False)
+
     args = parser.parse_args()
 
     fires = my_utils.get_column(args.file_name, args.country_column,
                                 args.country, result_column=args.fires_column)
-    print(fires)
+
+    if args.operation is None:
+        print(fires)
+
+    elif args.operation == "mean":
+        print(my_utils.mean(fires))
+
+    elif args.operation == "median":
+        print(my_utils.median(fires))
+
+    elif args.operation == "sd":
+        print(my_utils.sd(fires))
+
+    else:
+        print("Error: the argument 'operation' must be either 'mean', "
+              "'median', or 'sd'. It looks like you entered sonething else.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
