@@ -63,9 +63,9 @@ You can also run several examples using `run.sh` as follows:
 ```
 This will perform one successful run, one run that gives an error due to a typo in the file name, and one run that gives an error because one of the column numbers is too large/out of bounds.
 
-To check that the files follow the PEP 8 style guide, run
+To check that the python files follow the PEP 8 style guide, run
 ```
-pycodestyle print_fires.py my_utils.py
+pycodestyle print_fires.py my_utils.py test/unit/test_my_utils.py
 ```
 
 ## Testing instructions
