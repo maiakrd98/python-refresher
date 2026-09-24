@@ -54,7 +54,7 @@ def get_column(file_name, query_column, query_value, result_column=1):
         if query_entry == query_value:
 
             query_value_exists = True
-            
+
             try:
                 result_entry = entries[result_column]
             except IndexError:
@@ -74,8 +74,9 @@ def get_column(file_name, query_column, query_value, result_column=1):
             results.append(round(result_float))
 
     if not query_value_exists:
-        print("Error: there are no values in your query column (" + str(query_column) +
-              ") that match your query value ('" + query_value + "').")
+        print("Error: there are no values in your query column (" +
+              str(query_column) + ") that match your query value ('" +
+              str(query_value) + "').")
         sys.exit(1)
 
     file.close()
