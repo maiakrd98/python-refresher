@@ -162,6 +162,40 @@ class TestMyUtils(unittest.TestCase):
         array = []
         self.assertRaises(SystemExit, my_utils.median, array)
 
+    def test_sd_one_array(self):
+        array = [-1, 2, 3, -2, 0, -3, 1]
+        sd = my_utils.sd(array)
+        self.assertAlmostEqual(sd, 2.160246899)
+
+    def test_sd_uniform_distribution(self):
+        array = [random.randint(0, 10) for k in range(100000)]
+        sd = my_utils.sd(array)
+        self.assertAlmostEqual(sd, 3.162277660, delta=0.1)
+
+    def test_sd_random_arrays_within_bounds(self):
+        for i in range(10000):
+            a = random.randint(0, 10)
+            b = random.randint(0, 10)
+            c = random.randint(0, 10)
+            d = random.randint(0, 10)
+            array = [a, b, c, d]
+            sd = my_utils.sd(array)
+            self.assertTrue(sd <= 5.8)
+            self.assertTrue(sd >= 0)
+
+    def test_sd_not_incorrect(self):
+        array = [7, -1, -2, 9, 7]
+        sd = my_utils.sd(array)
+        self.assertNotAlmostEqual(sd, 10)
+
+    def test_sd_not_ints(self):
+        array = [True, 4, 5]
+        self.assertRaises(SystemExit, my_utils.sd, array)
+
+    def test_sd_empty_array(self):
+        array = []
+        self.assertRaises(SystemExit, my_utils.sd, array)
+
 
 if __name__ == '__main__':
     unittest.main()
