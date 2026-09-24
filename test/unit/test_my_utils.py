@@ -114,6 +114,54 @@ class TestMyUtils(unittest.TestCase):
         array = []
         self.assertRaises(SystemExit, my_utils.mean, array)
 
+    def test_median_odd_array(self):
+        array = [-3, 20, -1, 2, 4]
+        med = my_utils.median(array)
+        self.assertAlmostEqual(med, 2)
+
+    def test_median_even_array(self):
+        array = [-3, 20, -1, 2, 4, -2]
+        med = my_utils.median(array)
+        self.assertAlmostEqual(med, 0.5)
+
+    def test_median_random_arrays_within_bounds(self):
+        for i in range(10000):
+            a = random.randint(0, 10)
+            b = random.randint(0, 10)
+            c = random.randint(0, 10)
+            d = random.randint(0, 10)
+            array = [a, b, c, d]
+            med = my_utils.median(array)
+            self.assertTrue(med <= 10)
+            self.assertTrue(med >= 0)
+
+    def test_median_large_random_arrays_5(self):
+        array = []
+        for k in range(100000):
+            array.append(random.randint(0, 10))
+        med = my_utils.median(array)
+        self.assertAlmostEqual(med, 5)
+
+    def test_median_random_arrays_modulo_one_half(self):
+        for i in range(10000):
+            length = random.randint(1, 10)
+            array = [random.randint(0, 10) for k in range(length)]
+            med = my_utils.median(array)
+            self.assertAlmostEqual(med % 0.5, 0)
+
+    def test_median_not_incorrect(self):
+        array = [7, -1, -2, 9, 7]
+        med = my_utils.median(array)
+        self.assertNotAlmostEqual(med, 8)
+
+    def test_median_not_ints(self):
+        array = [3.5, 4, 5]
+        self.assertRaises(SystemExit, my_utils.median, array)
+
+    def test_median_empty_array(self):
+        array = []
+        self.assertRaises(SystemExit, my_utils.median, array)
+
 
 if __name__ == '__main__':
     unittest.main()
