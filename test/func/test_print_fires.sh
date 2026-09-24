@@ -34,4 +34,12 @@ run test_print_tanzania_crop_residues_median python ../../print_fires.py --file_
 assert_in_stout "695.5"
 assert_exit_code 0
 
+run test_print_canada_fires_sd python ../../print_fires.py --file_name 'Agrofood_co2_emissions_test_file.csv' --country 'Canada' --country_column 0  --fires_column 2 --operation "sd"
+assert_in_stout "876.5404"
+assert_exit_code 0
+
+run test_print_tanzania_crop_residues_sd python ../../print_fires.py --file_name 'Agrofood_co2_emissions_test_file.csv' --country 'United Republic of Tanzania' --country_column 0  --fires_column 3 --operation "sd"
+assert_in_stout "66.35603"
+assert_exit_code 0
+
 # TO DO: error testing 
