@@ -38,6 +38,8 @@ def get_column(file_name, query_column, query_value, result_column=1):
         print('Could not open ' + file_name)
         sys.exit(1)
 
+    query_value_exists = False
+
     for line in file:
 
         entries = line.split(sep=',')
@@ -51,6 +53,8 @@ def get_column(file_name, query_column, query_value, result_column=1):
 
         if query_entry == query_value:
 
+            query_value_exists = True
+            
             try:
                 result_entry = entries[result_column]
             except IndexError:
@@ -63,11 +67,16 @@ def get_column(file_name, query_column, query_value, result_column=1):
             except ValueError:
                 print("Could not convert entry in result_column ('" +
                       result_entry + "') to float")
-                sys.exit()
+                sys.exit(1)
 
             # round results to the nearest integer
             # (nearest even integer if the number ends in .5)
             results.append(round(result_float))
+
+    if not query_value_exists:
+        print("Error: there are no values in your query column (" + str(query_column) +
+              ") that match your query value ('" + query_value + "').")
+        sys.exit(1)
 
     file.close()
 
