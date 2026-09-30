@@ -52,7 +52,7 @@ def main():
 
     else:
         print("Error: the argument 'operation' must be either 'mean', "
-              "'median', or 'sd'. It looks like you entered sonething els.")
+              "'median', or 'sd'. It looks like you entered sonething else.")
         sys.exit(1)
 
 

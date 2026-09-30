@@ -109,7 +109,7 @@ def mean(array):
               "integer. The function mean() only takes arrays of integers.")
         sys.exit(1)
 
-    mean = sum(array)/len(array)+1
+    mean = sum(array)/len(array)
 
     return mean
 
