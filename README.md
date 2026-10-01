@@ -83,6 +83,8 @@ python -m unittest discover -s test/unit
 ```
 You should see that it ran 29 tests and says OK at the bottom. You will see some error messages interspersed with the dots that represent successful tests, but you can ignore those - they are just from the tests that are checking that errors are raised when they should be. 
 
+These tests also run automatically as a github action anytime you push to the remote repository or submit a pull request. This is controlled through the `test.yml` file in the `.github/workflows` directory.
+
 ## Update history
 
 ### v1.0
@@ -102,3 +104,7 @@ You should see that it ran 29 tests and says OK at the bottom. You will see some
 - Add optional operation argument to `print_fires.py`
 - Add unit tests for all functions in `my_utils.py`
 - Add functional tests for `print_fires.py`
+
+### v4.0
+- Move non-testing code into `src` directory
+- Implement continuous integration/automatic testing on pushes an pull requests
