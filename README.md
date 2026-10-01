@@ -27,7 +27,7 @@ mamba activate swe4s
 This environment contains `pycodestyle` for checking that python code is compliant with the PEP 8 style guide and `wget` for running the functional test file.
 
 ## Data files
-This repository expects a file called `Agrofood_co2_emission.csv`. This should be a comma separated file with countries listed in the first column, years listed in the second column, and corresponding greenhouse gas emmissions from various sources listed in the remaining columns.
+This repository expects a file called `Agrofood_co2_emission.csv`. This should be a comma separated file with countries listed in the first column, years listed in the second column, and corresponding greenhouse gas emmissions from various sources listed in the remaining columns. It should be located in the `src` directory.
 
 This repository also contains a small data file called `Agrofood_co2_emissions_test_file.csv` in `test/func` that contains only a few countries, years, and emmision types and is used in testing.
 
@@ -39,48 +39,51 @@ If no operation is supplied, `print_fires.py` uses the function `get_column()` i
 
 For example, running
 ```
-python print_fires.py --file_name 'Agrofood_co2_emission.csv' --country 'Canada' --country_column 0  --fires_column 3
+python src/print_fires.py --file_name 'src/Agrofood_co2_emission.csv' --country 'Canada' --country_column 0  --fires_column 3
 ```
-from the main directory of the repository (`python-refresher`, unless you have named it something else) will print a vector of emmissions due to fires in Canada for each year between 1990 and 2020, since fire emmissions are listed in the fourth column of `Agrofood_co2_emission.csv`. Similarly, running 
+will print a vector of emmissions due to fires in Canada for each year between 1990 and 2020, since fire emmissions are listed in the fourth column of `Agrofood_co2_emission.csv`. Similarly, running 
 ```
-python print_fires.py --file_name 'Agrofood_co2_emission.csv' --country 'Afghanistan' --country_column 0  --fires_column 17
+python src/print_fires.py --file_name 'src/Agrofood_co2_emission.csv' --country 'Afghanistan' --country_column 0  --fires_column 17
 ```
 will print a vector of emmissions due to fertilizer manufacturing in Afghanistan for each year between 1990 and 2020, since fertilizer manufacturing emmissions are listed in the eighteenth column of `Agrofood_co2_emission.csv`.
 
 The following examples use the operation argument as well.
 ```
-python print_fires.py --file_name 'Agrofood_co2_emission.csv' --country 'Canada' --country_column 0  --fires_column 3 --operation 'mean'
+python src/print_fires.py --file_name 'src/Agrofood_co2_emission.csv' --country 'Canada' --country_column 0  --fires_column 3 --operation 'mean'
 ```
 will print the mean emmissions due to fires in Canada for between 1990 and 2020 and
 ```
-python print_fires.py --file_name 'Agrofood_co2_emission.csv' --country 'Afghanistan' --country_column 0  --fires_column 17 --operation 'sd'
+python src/print_fires.py --file_name 'src/Agrofood_co2_emission.csv' --country 'Afghanistan' --country_column 0  --fires_column 17 --operation 'sd'
 ```
 will print the standard deviation of emmissions due to fertilizer manufacturing in Afghanistan between 1990 and 2020.
 
 You can also run several examples using `run.sh` as follows:
 ```
-./run.sh
+./src/run.sh
 ```
 This will perform one successful run, one run that gives an error due to a typo in the file name, and one run that gives an error because one of the column numbers is too large/out of bounds.
 
-To check that the python files follow the PEP 8 style guide, run
+To check that all python files in the repository follow the PEP 8 style guide, navigate back to the main directory of the repository and run
 ```
-pycodestyle print_fires.py my_utils.py test/unit/test_my_utils.py
+pycodestyle $(git ls-files "*.py")
 ```
+You will see any errors printed. If nothing shows up, that means that all the files follow the style guide!
 
 ## Testing instructions
 
-To run the functional tests, which check that `print_fires.py` is working properly, run the following command
+To run the functional tests, which check that `print_fires.py` is working properly, run the following command from the main directory of the repository
 ```
 bash test/func/test_print_fires.sh
 ```
 You should see that 28 tests have run with hopefully 28 successes.
 
-To run the unit tests, run the following command
+To run the unit tests, run the following command from the main directory of the repository
 ```
 python -m unittest discover -s test/unit
 ```
 You should see that it ran 29 tests and says OK at the bottom. You will see some error messages interspersed with the dots that represent successful tests, but you can ignore those - they are just from the tests that are checking that errors are raised when they should be. 
+
+These tests also run automatically as a github action anytime you push to the remote repository or submit a pull request. This is controlled through the `test.yml` file in the `.github/workflows` directory.
 
 ## Update history
 
@@ -101,3 +104,7 @@ You should see that it ran 29 tests and says OK at the bottom. You will see some
 - Add optional operation argument to `print_fires.py`
 - Add unit tests for all functions in `my_utils.py`
 - Add functional tests for `print_fires.py`
+
+### v4.0
+- Move non-testing code into `src` directory
+- Implement continuous integration/automatic testing on pushes an pull requests
